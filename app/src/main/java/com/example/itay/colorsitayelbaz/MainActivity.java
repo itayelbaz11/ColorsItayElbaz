@@ -1,0 +1,73 @@
+package com.example.itay.colorsitayelbaz;
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+
+/**
+ * @author Itay Elbaz
+ * @version alpha
+ * @since 6.7.2003
+ *
+ * in this activity you choose a colo out of three colors and the background changes its color, and you can move to the next activity
+ *
+ *
+ */
+
+public class MainActivity extends AppCompatActivity {
+    LinearLayout l;
+
+    /**
+     *
+     * l is the linearlayout object
+     */
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        l=(LinearLayout) findViewById(R.id.l);
+    }
+
+    /**
+     *
+     * this method creates a menu
+     */
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    /**
+     *
+     * @param item the option that has been chosen
+     * this method changes the color of the background, depends on the color you choose.
+     *
+     */
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (R.id.black == id) {
+            l.setBackgroundColor(Color.BLACK);
+        } else {
+            if (id == R.id.red) {
+                l.setBackgroundColor(Color.RED);
+            } else
+                l.setBackgroundColor(Color.GRAY);
+        }
+        return true;
+    }
+
+    /**
+     *
+     * here you move to the next activity
+     */
+    public void nxt(View view) {
+        Intent si=new Intent(this,nextActivity.class);
+        startActivity(si);
+    }
+}
